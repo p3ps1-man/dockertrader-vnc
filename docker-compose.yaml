@@ -1,0 +1,12 @@
+services:
+  metatrader:
+    image: dockertrader-vnc
+    container_name: mt5
+    ports:
+      - "3000:3000"
+    volumes:
+      - app:/home/mt5/program/
+      - ./pass/:/home/mt5/password
+
+volumes:
+  app:
