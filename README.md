@@ -1,6 +1,6 @@
 # Metatrader 5 vnc docker image [![](https://img.shields.io/docker/pulls/p3ps1man/dockertrader-vnc)](https://hub.docker.com/r/p3ps1man/dockertrader-vnc)
 
-This image lets you run headless Metratrader 5 terminal via websockify vnc. You can access the terminal via web browser for login, configurations etc. Switch to local scaling for a better preview. If you need to restart the terminal just close it it will restart automaticly.
+This image lets you run headless Metratrader 5 terminal via websockify vnc. You can access the terminal via web browser for login, configurations etc. Switch to local scaling for a better preview. If you need to restart the terminal just close it it will restart automaticly. You can pass your ENV values for resolution etc.
 
 ![](/screenshots/program.png)
 
@@ -54,7 +54,7 @@ You will get browser ssl security warning because its a self signed ssl certific
 
 ## Mounts and notices
 
-There two key mounts:
+There are two key mounts:
 
 1. ```/home/mt5/ssl``` this directory is used for key.pem and cert.pem so you can forward it from your host to skip browser warning
 2. ```/home/mt5/program/MQL5/Experts``` this is expert directory you can bundle all your experts or just one

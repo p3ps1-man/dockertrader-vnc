@@ -7,7 +7,8 @@ ENV VNC_PORT=5901 \
     SUPERVISORD_LOGFILE=/home/mt5/.supervisor/supervisord.log \
     CERT=/home/mt5/ssl/cert.pem \
     KEY=/home/mt5/ssl/key.pem \
-    VNC_PASSWORD=changeme
+    VNC_PASSWORD=changeme \
+    MT5_RESOLUTION=1600x800
 
 USER root
 
