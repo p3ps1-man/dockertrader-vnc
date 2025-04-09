@@ -31,41 +31,33 @@ Or just pull it from dockerhub:
 docker pull p3ps1man/dockertrader-vnc
 ```
 
-3. Create encrypted password so it can be later mounted as vnc password to your directory (you can use this image to generate it)
+3. Run the container, pass the password as ENV var container and access it [https://localhost:3000/vnc.html](https://localhost:3000/vnc.html) 
 ```bash
-docker run --rm -v ./pass:/home/mt5/password dockertrader-vnc x11vnc -storepasswd changeme password/passwd
-```
-
-4. Mount your generated password and you are ready to go
-```bash
-docker run -v ./pass:/home/mt5/password -p 3000:3000 dockertrader-vnc
+docker run -e VNC_PASSWORD=123 -p 3000:3000 p3ps1man/dockertrader-vnc
 ```
 Or you can use docker-compose
 ```bash
 services:
   metatrader:
-    image: dockertrader-vnc
+    image: p3ps1man/dockertrader-vnc
     container_name: mt5
+    environment:
+      - VNC_PASSWORD=123 
     ports:
       - "3000:3000"
     volumes:
       - app:/home/mt5/program/
-      - ./pass/:/home/mt5/password
-
 volumes:
   app:
 ```
 You will get browser ssl security warning because its a self signed ssl certificate but you can mount your own generated with letsencrypt - it will be explained in mounts section.
 
-5. Acess it via link in your browser [https://localhost:3000/vnc.html](https://localhost:3000/vnc.html)
-
 ## Mounts and notices
 
-There are several key mounts:
+There two key mounts:
 
-1. ```/home/mt5/password``` mount this directory with your generated password filename should be ```passwd``` for accessing vnc
-2. ```/home/mt5/ssl``` this directory is used for key.pem and cert.pem so you can forward it from your host to skip browser warning
-3. ```/home/mt5/program/MQL5/Experts``` this is expert directory you can bundle all your experts or just one
+1. ```/home/mt5/ssl``` this directory is used for key.pem and cert.pem so you can forward it from your host to skip browser warning
+2. ```/home/mt5/program/MQL5/Experts``` this is expert directory you can bundle all your experts or just one
 
 Log files are located in ```/home/mt5/.supervisor``` directory.
 

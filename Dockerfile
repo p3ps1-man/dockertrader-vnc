@@ -5,9 +5,9 @@ ENV VNC_PORT=5901 \
     WEB_PORT=3000 \
     SUPERVISORD_PIDFILE=/home/mt5/.supervisor/supervisord.pid \
     SUPERVISORD_LOGFILE=/home/mt5/.supervisor/supervisord.log \
-    PASSWORD_FILE=/home/mt5/password/passwd \
     CERT=/home/mt5/ssl/cert.pem \
-    KEY=/home/mt5/ssl/key.pem
+    KEY=/home/mt5/ssl/key.pem \
+    VNC_PASSWORD=changeme
 
 USER root
 
@@ -23,7 +23,7 @@ RUN git clone https://github.com/novnc/noVNC.git /usr/share/novnc && \
 USER mt5
 WORKDIR /home/mt5
 
-RUN mkdir .supervisor && mkdir password && mkdir ssl
+RUN mkdir .supervisor && mkdir ssl
 RUN openssl req -x509 -newkey rsa:4096 -keyout ssl/key.pem -out ssl/cert.pem -days 36500 -nodes -subj "/"
 
 COPY supervisord.conf .supervisor/supervisord.conf
