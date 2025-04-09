@@ -19,7 +19,7 @@ This image lets you run headless Metratrader 5 terminal via websockify vnc. You 
 1. Clone repository:
 ```bash
 git clone https://github.com/p3ps1-man/dockertrader-vnc
-cd ockertrader-vnc
+cd dockertrader-vnc
 ```
 
 2. Build the Docker image:
